@@ -12,38 +12,72 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 5. creo un timer di 5 sec
 6.passati 5 sec nascondo i numeri
 7. faccio inserire i numeri in un prompt(uno per volta)
-8. 
+8. quanti numeri ho indovinato
+9. quali numeri ho indovinato
 */
 const wrapper= document.getElementById("wrapper")
 const startBttn= document.getElementById( "start" );
 const randomNumbersArr=[ ];
+const myNumbersArr=[ ];
+const correctNumbers=[ ];
 
 
-startBttn.addEventListener("click", start)
+startBttn.addEventListener("click", start);
 
 function start() {
+    
     remove();
     displayGeneration();
-    
 }
+
 
 setTimeout(hideArray, 5000);
 function hideArray() {
-    display.classList.add("hide");
+    document.querySelector("h1").classList.add("hide");
+    while (myNumbersArr.length < 5) {
+        const myNumbers= parseInt(prompt("Inserisci i numeri che hai visualizzato prima:"));
+        myNumbersArr.push(myNumbers);
+        console.log(myNumbersArr);
+    }
+    correctNumbersCreation();
+    showNumbers();
+    console.log(correctNumbers);
 }
+
+
+function correctNumbersCreation(){
+    for (let i=0; i<=myNumbersArr.length; i++) {
+        if (randomNumbersArr.includes(myNumbersArr[i])) {
+            correctNumbers.push(myNumbersArr[i]);
+        }
+    }
+    console.log("i array", correctNumbers);
+}
+
+function showNumbers() {
+    const message=document.createElement("h1");
+    wrapper.append(message);
+    correctNumbersCreation();
+    message.innerHTML=`hai indovinato ${correctNumbers.length}`;
+}
+
 
 function displayGeneration() {
     const display=document.createElement("h1");
     wrapper.append(display);
     arrayGeneration(randomNumbersArr);
+    return display;
 }
 
 function arrayGeneration() {
     while (randomNumbersArr.length < 5 ) {
-        const numberGenerated= randomNumbersCreation( 1 , 10);
-        randomNumbersArr.push(numberGenerated);
+        const numberGenerated= randomNumbersCreation( 1 , 100);
+        if (!(randomNumbersArr.includes(numberGenerated))) {
+            randomNumbersArr.push(numberGenerated);
+        }
+        
     }
-    display.innerHTML=`${randomNumbersArr}`
+    document.querySelector("h1").innerHTML=`${randomNumbersArr}`;
     console.log(randomNumbersArr);
     return randomNumbersArr;
 }
