@@ -1,0 +1,23 @@
+#wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 500px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: rgba(78, 78, 207, 0.674);
+    color: white;
+}
+
+#start{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: darkslateblue;
+    color: white;
+    cursor: pointer;
+}
+
+.hide{
+    display: none;
+}
