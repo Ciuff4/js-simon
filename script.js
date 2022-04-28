@@ -25,10 +25,10 @@ const correctNumbers=[ ];
 startBttn.addEventListener("click", start);
 
 function start() {
-    
     remove();
     displayGeneration();
 }
+
 
 
 setTimeout(hideArray, 5000);
@@ -39,26 +39,31 @@ function hideArray() {
         myNumbersArr.push(myNumbers);
         console.log(myNumbersArr);
     }
-    correctNumbersCreation();
     showNumbers();
     console.log(correctNumbers);
 }
 
 
+
 function correctNumbersCreation(){
-    for (let i=0; i<=myNumbersArr.length; i++) {
+    for (let i=0; i<myNumbersArr.length; i++) {
         if (randomNumbersArr.includes(myNumbersArr[i])) {
             correctNumbers.push(myNumbersArr[i]);
         }
+        console.log(correctNumbers);
     }
-    console.log("i array", correctNumbers);
+    
 }
 
 function showNumbers() {
     const message=document.createElement("h1");
     wrapper.append(message);
     correctNumbersCreation();
-    message.innerHTML=`hai indovinato ${correctNumbers.length}`;
+    message.innerHTML=
+    `
+    Hai indovinato ${correctNumbers.length} numeri<br>
+    ${correctNumbers}
+    `;
 }
 
 
@@ -78,7 +83,7 @@ function arrayGeneration() {
         
     }
     document.querySelector("h1").innerHTML=`${randomNumbersArr}`;
-    console.log(randomNumbersArr);
+    console.log("random array",randomNumbersArr);
     return randomNumbersArr;
 }
 
